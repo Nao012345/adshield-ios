@@ -8,7 +8,7 @@ GitHub で開発・配布します。Mac・Xcode・脱獄・Brave の改造は�
 Windows PC ─ push ─> GitHub（検証・テスト）─ 合格時のみ ─> GitHub Pages ─> iPhone の Brave「URL で追加」
 ```
 
-> **状態: v0.1.0（Phase 1）。iPhone 実機では未検証です。** 検証状況は [docs/verification.md](docs/verification.md)。
+> **状態: v0.1.0（Phase 1）。iPhone 実機で導入と動作確認（導入チェック「有効」）まで確認済み。個々の広告ルールの効果は未検証です。** 検証状況は [docs/verification.md](docs/verification.md)。
 
 ## 使い方
 
