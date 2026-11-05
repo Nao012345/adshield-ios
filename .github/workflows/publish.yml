@@ -1,0 +1,63 @@
+name: Publish filters
+
+# Publishes dist/*.txt and site/ to GitHub Pages.
+# - Runs on every push to main. If any check fails, nothing is deployed and the
+#   previously published lists stay online (fail closed).
+# - Rollback: Actions > Publish filters > Run workflow, and enter a tag or commit
+#   (e.g. v0.1.0) in "ref". That version is rebuilt, re-tested and deployed.
+#   Also revert the bad commit on main, or the next push will publish it again.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "公開するタグまたはコミット（ロールバック用。空欄なら main の最新）"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate
+        run: python scripts/validate.py
+      - name: Check dist/ is regenerated
+        run: python scripts/build.py --check
+      - name: Tests
+        run: python -m unittest discover -s tests
+      - name: Assemble site
+        run: python scripts/make_site.py --out _site
+      - name: Record published version
+        run: |
+          echo "Published ref: ${{ inputs.ref || github.sha }}" >> "$GITHUB_STEP_SUMMARY"
+          grep -h "^! \(Title\|Version\|Content-Hash\)" dist/*.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,17 @@
+! 検証待ちの候補（公開されない）。各ルールの上に保留理由を書く。
+! @source: original
+
+! popIn: 上流は広告パスだけを遮断し、おすすめ記事は意図的に許可している
+! (@@||popin.cc/popin_discovery/recommend?$~third-party)。ドメイン全体の遮断は過剰。
+! 広告パスで上流に無いものが見つかった場合のみ追加する。
+||popin.cc/popin_discovery/ad?$third-party
+
+! UZOU (ネイティブ広告): 配信ドメインを実機で未確認。
+||uzou.jp^$third-party
+
+! YouTube モバイル: 上流に無いセレクタ。現在も使われている要素か実機で未確認。
+m.youtube.com##ytm-promoted-sparkles-web-renderer
+
+! :has() は WebKit では有効な CSS だが、Brave iOS の要素非表示で適用されるか未検証のため不可。
+! validate.py --staging で NG になる例として残す。
+m.youtube.com##ytm-rich-item-renderer:has(> ad-slot-renderer)

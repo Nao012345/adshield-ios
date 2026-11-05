@@ -1,0 +1,12 @@
+! AdShield iOS - Annoyances (source file)
+! 方針: Web プッシュ通知の許可誘導に限る。
+!  - アプリインストール誘導バナーは Brave 既定の「Mobile app promo blocker」が担当（重複させない）。
+!  - Cookie 同意バナーは Brave 既定の「Cookie notice blocker」に任せ、ここでは隠さない
+!    （単純に隠すとサイトが操作不能になる場合があるため）。
+! 実機検証: 未検証（docs/verification.md）
+! @source: original
+
+! ---- Web プッシュ通知の許可誘導 ----
+! OneSignal Web SDK: EasyPrivacy は一部のパスのみ遮断。SDK 本体を第三者として読む場合に遮断し、
+! 通知許可ダイアログの表示を防ぐ。onesignal.com 自体のサイトには影響しない。
+||cdn.onesignal.com/sdks/$script,third-party

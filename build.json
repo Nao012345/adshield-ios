@@ -1,0 +1,49 @@
+{
+  "project": "AdShield iOS",
+  "github_owner": "Nao012345",
+  "repo_name": "adshield-ios",
+  "license": "GPL-3.0",
+  "expires": "1 day",
+  "bundles": [
+    {
+      "id": "core",
+      "file": "adshield-core.txt",
+      "title": "AdShield iOS - Core",
+      "description": "Japanese ad networks and ad slots not covered by Brave default lists",
+      "sources": ["filters/core.txt"]
+    },
+    {
+      "id": "video",
+      "file": "adshield-video.txt",
+      "title": "AdShield iOS - Video",
+      "description": "Conservative cosmetic rules for video sites (YouTube, niconico, TVer, ABEMA)",
+      "sources": [
+        "filters/video/youtube.txt",
+        "filters/video/niconico.txt",
+        "filters/video/tver.txt",
+        "filters/video/abema.txt"
+      ]
+    },
+    {
+      "id": "privacy",
+      "file": "adshield-privacy.txt",
+      "title": "AdShield iOS - Privacy",
+      "description": "Session replay, heatmap and ad-conversion trackers common on Japanese sites",
+      "sources": ["filters/privacy.txt"]
+    },
+    {
+      "id": "annoyances",
+      "file": "adshield-annoyances.txt",
+      "title": "AdShield iOS - Annoyances",
+      "description": "Web push prompts and app install banners",
+      "sources": ["filters/annoyances.txt"]
+    },
+    {
+      "id": "all",
+      "file": "adshield-all.txt",
+      "title": "AdShield iOS - All",
+      "description": "All AdShield iOS lists in one subscription",
+      "sources": "*"
+    }
+  ]
+}

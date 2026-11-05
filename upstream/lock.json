@@ -1,0 +1,18 @@
+{
+  "adblock-rust": {
+    "date": "2026-11-05T17:12:50Z",
+    "sha": "09d297c2c2322fef38e91b59521210479516cb4d"
+  },
+  "adguard-filters": {
+    "date": "2026-11-05T17:12:49Z",
+    "sha": "8dc13d23bcbad5b8f1104962d2e0b0b344d67241"
+  },
+  "brave-adblock-lists": {
+    "date": "2026-11-05T17:12:48Z",
+    "sha": "3106d1ae6fbb29bf6a434c3adcddde9ffb048e40"
+  },
+  "uassets": {
+    "date": "2026-11-05T17:12:48Z",
+    "sha": "d286da670e4a53e3f368d8ddd6efe11ae0d902fa"
+  }
+}

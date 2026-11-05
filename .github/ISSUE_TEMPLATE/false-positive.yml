@@ -1,0 +1,51 @@
+name: 誤ブロック（サイトが壊れた）
+description: AdShield を有効にするとサイトや動画が正しく動かない
+labels: [false-positive]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        個人情報（ログイン後の URL に含まれる ID、メールアドレス、Cookie、トークンなど）は書かないでください。
+  - type: input
+    id: url
+    attributes:
+      label: サイトの URL（ログイン不要な公開ページ）
+      placeholder: https://example.jp/article/123
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: 何が起きたか
+      description: 例）動画が再生されない、ボタンが押せない、画面が真っ白
+    validations:
+      required: true
+  - type: checkboxes
+    id: lists
+    attributes:
+      label: 登録している AdShield リスト
+      options:
+        - label: All
+        - label: Core
+        - label: Video
+        - label: Privacy
+        - label: Annoyances
+  - type: dropdown
+    id: isolate
+    attributes:
+      label: AdShield のリストを無効にすると直りますか？
+      options: [直る, 直らない, 未確認]
+    validations:
+      required: true
+  - type: input
+    id: brave
+    attributes:
+      label: Brave のバージョン / iOS のバージョン
+      placeholder: Brave 1.98.x / iOS 27.x
+    validations:
+      required: true
+  - type: dropdown
+    id: shields
+    attributes:
+      label: トラッカーと広告のブロック設定
+      options: [標準, アグレッシブ, 不明]

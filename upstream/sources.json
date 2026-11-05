@@ -1,0 +1,38 @@
+{
+  "_comment": "Provenance registry. A rule block marked '! @source: <id>' may only use ids listed here, and validate.py rejects ids whose license cannot be reused under our license (build.json 'license'). 'watch' entries are monitored weekly by .github/workflows/upstream-watch.yml (report only, never auto-applied). Licenses checked via the GitHub API on 2026-11-06.",
+  "sources": [
+    {
+      "id": "original",
+      "name": "AdShield iOS original rules",
+      "license": "GPL-3.0"
+    },
+    {
+      "id": "brave-adblock-lists",
+      "name": "Brave adblock-lists",
+      "url": "https://github.com/brave/adblock-lists",
+      "license": "MPL-2.0",
+      "watch": {"repo": "brave/adblock-lists", "branch": "master"}
+    },
+    {
+      "id": "uassets",
+      "name": "uBlock Origin uAssets",
+      "url": "https://github.com/uBlockOrigin/uAssets",
+      "license": "GPL-3.0",
+      "watch": {"repo": "uBlockOrigin/uAssets", "branch": "master"}
+    },
+    {
+      "id": "adguard-filters",
+      "name": "AdGuard Filters",
+      "url": "https://github.com/AdguardTeam/AdguardFilters",
+      "license": "GPL-3.0",
+      "watch": {"repo": "AdguardTeam/AdguardFilters", "branch": "master"}
+    },
+    {
+      "id": "adblock-rust",
+      "name": "Brave adblock-rust (engine; syntax reference only, no rules copied)",
+      "url": "https://github.com/brave/adblock-rust",
+      "license": "MPL-2.0",
+      "watch": {"repo": "brave/adblock-rust", "branch": "master"}
+    }
+  ]
+}

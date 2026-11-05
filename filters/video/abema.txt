@@ -1,0 +1,9 @@
+! AdShield iOS - Video / ABEMA (source file)
+! 状態 (v0.1.0): 本番ルールなし。
+! 調査結果 (2026-11-06):
+!  - 広告配信 ||ad.abema.io^ は Brave 内蔵の「Japanese website ad blocker」(AdGuard Japanese) が
+!    既に遮断している。
+!  - 番組中の CM は配信ストリームに組み込まれている可能性があり、通信遮断では除去できず
+!    再生を壊す危険がある。本編と広告を区別できるまでネットワーク遮断はしない。
+! 実機で残った広告枠は docs/verification.md に記録し、staging/ で検証してから追加する。
+! @source: original

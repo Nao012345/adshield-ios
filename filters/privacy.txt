@@ -1,0 +1,11 @@
+! AdShield iOS - Privacy (source file)
+! 方針: セッション録画・ヒートマップ・広告コンバージョン計測に限る。
+!       ログイン・決済・チャット・個人設定に使われるサービス（KARTE、Rtoaster 等）は対象外。
+! Brave 既定リストと重複するもの (mieru-ca, Ptengine, Clarity, Hotjar, Contentsquare, Mouseflow,
+!   FullStory, Logicad/ladsp, IM-UID, Yahoo! リターゲティング s_retargeting.js) は追加しない。
+! 実機検証: 未検証（docs/verification.md）
+! @source: original
+
+! ---- ヒートマップ / セッション録画（国内サービス） ----
+! USERHEAT: Brave 既定リスト・AdGuard Japanese に未収録 (2026-11-06 確認)
+||userheat.com^$third-party

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AdShield iOS</title>
+<style>
+  :root { --bg:#f7f7f5; --fg:#1b1b1a; --muted:#66655f; --card:#fff; --line:#e3e2dc; --accent:#2b5fd9; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#141413; --fg:#ecebe6; --muted:#a3a29b; --card:#1f1f1d; --line:#33322e; --accent:#8fb0ff; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 24px 16px 56px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  h2 { font-size: 1.1rem; margin: 32px 0 8px; }
+  p, li { color: var(--fg); }
+  .muted { color: var(--muted); }
+  .list { background: var(--card); border:1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin: 10px 0; }
+  .list strong { display:block; }
+  .url { display:flex; gap:8px; align-items:center; margin-top:6px; }
+  .url code { flex:1; min-width:0; overflow-wrap:anywhere; font-size:.8rem; background: var(--bg);
+              padding: 6px 8px; border-radius: 6px; }
+  button { font: inherit; font-size:.85rem; padding: 6px 12px; border-radius: 6px; border:1px solid var(--line);
+           background: var(--card); color: var(--fg); white-space: nowrap; }
+  a { color: var(--accent); }
+  ol li { margin: 4px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>AdShield iOS</h1>
+  <p class="muted">iPhone 版 Brave 用の補完フィルターリスト（v{{VERSION}}）。Brave 標準の広告ブロックで取り切れない分だけを補います。</p>
+
+  <h2>1. まず Brave 内蔵の日本向けリストを有効にする</h2>
+  <p>TVer・ニコニコ動画・ABEMA などの日本の広告対策は、Brave に内蔵された「Japanese website ad blocker」に入っています。
+     既定ではオフの場合があるため、最初にこれを有効にしてください。</p>
+
+  <h2>2. AdShield のリストを追加する</h2>
+  <p>次のどちらかの方法で登録します。<strong>一括（All）だけ</strong>、または<strong>必要なものを個別に</strong>登録してください（両方登録する必要はありません）。</p>
+  <div class="list"><strong>All（一括）</strong><span class="muted">下の 4 つをまとめたもの。迷ったらこれだけ登録。</span>
+    <div class="url"><code>{{PAGES_BASE}}adshield-all.txt</code></div></div>
+  <div class="list"><strong>Core</strong><span class="muted">一般サイトの広告（Brave 標準との差分のみ）</span>
+    <div class="url"><code>{{PAGES_BASE}}adshield-core.txt</code></div></div>
+  <div class="list"><strong>Video</strong><span class="muted">YouTube など動画サイトの広告枠（要素非表示のみ）</span>
+    <div class="url"><code>{{PAGES_BASE}}adshield-video.txt</code></div></div>
+  <div class="list"><strong>Privacy</strong><span class="muted">ヒートマップ・セッション録画などの追跡</span>
+    <div class="url"><code>{{PAGES_BASE}}adshield-privacy.txt</code></div></div>
+  <div class="list"><strong>Annoyances</strong><span class="muted">Web プッシュ通知の許可誘導</span>
+    <div class="url"><code>{{PAGES_BASE}}adshield-annoyances.txt</code></div></div>
+
+  <h2>3. 動いているか確認する</h2>
+  <p>iPhone の Brave で <a href="test/">導入チェックページ</a> を開き、登録したリストが「有効」になることを確認します。</p>
+
+  <h2>手順の詳細・不具合の報告</h2>
+  <ul>
+    <li><a href="https://github.com/{{OWNER}}/{{REPO}}/blob/main/docs/install-ios.md">iPhone への導入手順（日本語）</a></li>
+    <li><a href="https://github.com/{{OWNER}}/{{REPO}}/issues/new/choose">誤ブロック・広告の取りこぼしを報告する</a></li>
+  </ul>
+  <p class="muted">実機での検証状況は <a href="https://github.com/{{OWNER}}/{{REPO}}/blob/main/docs/verification.md">verification.md</a> にまとめています。未検証の項目があります。</p>
+</main>
+<script>
+(function () {
+  "use strict";
+  if (!navigator.clipboard) return;
+  Array.prototype.forEach.call(document.querySelectorAll(".url"), function (row) {
+    var url = row.querySelector("code").textContent;
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = "コピー";
+    btn.addEventListener("click", function () {
+      navigator.clipboard.writeText(url).then(function () {
+        btn.textContent = "コピーしました";
+        setTimeout(function () { btn.textContent = "コピー"; }, 1500);
+      }, function () {});
+    });
+    row.appendChild(btn);
+  });
+})();
+</script>
+</body>
+</html>

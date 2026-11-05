@@ -1,0 +1,34 @@
+name: 広告の取りこぼし
+description: AdShield と Brave 標準リストを有効にしても広告が表示される
+labels: [missed-ad]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        先に Brave の「Japanese website ad blocker」が有効か確認してください（docs/install-ios.md）。
+        個人情報（ログイン後の URL に含まれる ID、メールアドレス、Cookie、トークンなど）は書かないでください。
+  - type: input
+    id: url
+    attributes:
+      label: サイトの URL（ログイン不要な公開ページ）
+    validations:
+      required: true
+  - type: textarea
+    id: where
+    attributes:
+      label: 広告の場所と種類
+      description: 例）記事の下のバナー、動画の再生前の CM、画面下に固定されたアプリ誘導
+    validations:
+      required: true
+  - type: checkboxes
+    id: brave_lists
+    attributes:
+      label: 有効にしている Brave 内蔵リスト
+      options:
+        - label: Japanese website ad blocker
+  - type: input
+    id: brave
+    attributes:
+      label: Brave のバージョン / iOS のバージョン
+    validations:
+      required: true

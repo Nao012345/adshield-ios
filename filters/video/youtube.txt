@@ -1,0 +1,16 @@
+! AdShield iOS - Video / YouTube (source file)
+! 方針:
+!  - 動画広告（プレロール等）は Brave の「iOS-Specific Filters」がスクリプトレット
+!    (trusted-replace-xhr-response 等) で処理している。カスタムリストでは JavaScript を
+!    前提にしないため、ここでは扱わない。
+!  - googlevideo.com / youtubei API など本編と共通の通信は遮断しない。
+!  - 広告の「枠」の要素だけを隠す。スキップボタン等の広告 UI は隠さない。
+!  - 上流 (uBO) は ad-slot-renderer を配置ごとに指定している。ここでは広告専用の要素そのものを
+!    隠し、上流が指定していない配置を補完する。
+! 実機検証: 未検証（docs/verification.md）
+! @source: original
+
+! モバイル版 (m.youtube.com)
+m.youtube.com##ad-slot-renderer
+! デスクトップ表示（iPad の「デスクトップ用 Web サイトを表示」など）
+www.youtube.com##ytd-ad-slot-renderer

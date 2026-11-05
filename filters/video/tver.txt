@@ -1,0 +1,10 @@
+! AdShield iOS - Video / TVer (source file)
+! 状態 (v0.1.0): 本番ルールなし。
+! 調査結果 (2026-11-06):
+!  - AdGuard Japanese (Brave 内蔵「Japanese website ad blocker」) は TVer の CM を
+!    スクリプトレット (json-prune, google-ima など) と $redirect で処理している。
+!    どちらもカスタムリストの本方針（JavaScript 前提にしない／iOS の変換で $redirect 不可）では
+!    再現できないため、そのリストを有効にすることを推奨する。
+!  - 広告通信を単純に遮断すると再生が止まる可能性が高い。ネットワーク遮断はしない。
+! 実機で残った広告枠は docs/verification.md に記録し、staging/ で検証してから追加する。
+! @source: original

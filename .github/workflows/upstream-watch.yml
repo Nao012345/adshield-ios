@@ -1,0 +1,45 @@
+name: Upstream watch
+
+# Weekly report on upstream projects and on overlap with Brave's default lists.
+# Report only: nothing is ever merged into filters/ automatically.
+
+on:
+  schedule:
+    - cron: "17 0 * * 1"   # Mondays 00:17 UTC (09:17 JST)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check upstream commits
+        id: watch
+        run: |
+          python scripts/upstream_watch.py --report report.md | tee watch.log
+          echo "changes=$(grep -o 'changes=[0-9]*' watch.log | cut -d= -f2)" >> "$GITHUB_OUTPUT"
+      - name: Check overlap with Brave default lists
+        continue-on-error: true
+        run: python scripts/overlap_check.py --summary report.md
+      - name: Job summary
+        run: cat report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Open or update a review issue
+        if: steps.watch.outputs.changes != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="上流フィルターの更新確認 $(date -u +%Y-%m-%d)"
+          existing=$(gh issue list --state open --label upstream-review --json number --jq '.[0].number')
+          gh label create upstream-review --color FBCA04 --description "Upstream changes to review" 2>/dev/null || true
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file report.md
+          else
+            gh issue create --title "$title" --label upstream-review --body-file report.md
+          fi

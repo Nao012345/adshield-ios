@@ -1,0 +1,30 @@
+# URLs that AdShield must never block (login, payment, captcha, video playback, CDNs).
+# One URL per line. Checked against every network rule in dist/adshield-all.txt,
+# ignoring resource types and domain restrictions (worst case).
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+https://m.youtube.com/
+https://www.youtube.com/youtubei/v1/player?prettyPrint=false
+https://rr3---sn-oguelnzr.googlevideo.com/videoplayback?expire=1&itag=18&source=youtube
+https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg
+https://accounts.google.com/v3/signin/identifier
+https://www.google.com/recaptcha/api.js
+https://www.gstatic.com/recaptcha/releases/abc/recaptcha__ja.js
+https://js.hcaptcha.com/1/api.js
+https://challenges.cloudflare.com/turnstile/v0/api.js
+https://js.stripe.com/v3/
+https://www.paypal.com/sdk/js?client-id=x
+https://appleid.apple.com/auth/authorize
+https://www.nicovideo.jp/watch/sm9
+https://nvapi.nicovideo.jp/v1/watch/sm9/access-rights/hls
+https://account.nicovideo.jp/login
+https://tver.jp/episodes/ep00000000
+https://platform-api.tver.jp/service/api/v1/callHome
+https://abema.tv/now-on-air/abema-news
+https://api.abema.io/v1/media/token
+https://login.yahoo.co.jp/config/login
+https://s.yimg.jp/images/top/sp2/cmn/logo-170307.png
+https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
+https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js
+https://pay.line.me/portal/jp/main
+https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+https://onesignal.com/

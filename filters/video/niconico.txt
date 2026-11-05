@@ -1,0 +1,9 @@
+! AdShield iOS - Video / ニコニコ動画 (source file)
+! 状態 (v0.1.0): 本番ルールなし。
+! 調査結果 (2026-11-06):
+!  - 広告配信 ||ads.nicovideo.jp^ と計測系は Brave 内蔵の「Japanese website ad blocker」
+!    (AdGuard Japanese) が既に遮断している。docs/install-ios.md の手順でそのリストを有効にする。
+!  - 「ニコニ広告」(nicoad) は利用者による動画の宣伝機能で、広告配信とは別物。遮断しない。
+!  - 本編と広告の通信を区別できるまで、独自のネットワーク遮断はしない（指示書 4-B）。
+! 実機で残った広告は docs/verification.md に記録し、staging/ で検証してから追加する。
+! @source: original

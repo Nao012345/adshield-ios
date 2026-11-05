@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate filter sources (syntax, iOS compatibility, duplicates, licenses)
+        run: python scripts/validate.py --staging
+      - name: Check dist/ is regenerated
+        run: python scripts/build.py --check
+      - name: Unit and integration tests
+        run: python -m unittest discover -s tests -v
+      - name: Overlap with Brave default lists (report only)
+        continue-on-error: true
+        run: python scripts/overlap_check.py --summary "$GITHUB_STEP_SUMMARY"

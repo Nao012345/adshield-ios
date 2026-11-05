@@ -1,0 +1,42 @@
+{
+  "_comment": "Lists Brave already ships (from brave/adblock-resources filter_lists/list_catalog.json, checked 2026-11-06). Used only to detect overlap; nothing is copied.",
+  "lists": [
+    {
+      "id": "brave-default-adblock",
+      "name": "Brave Default Adblock Filters",
+      "default_enabled": true,
+      "urls": [
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2024.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2025.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2026.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-general.txt",
+        "https://easylist.to/easylist/easylist.txt",
+        "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-specific.txt",
+        "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-ios-specific.txt",
+        "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-firstparty.txt"
+      ]
+    },
+    {
+      "id": "brave-default-privacy",
+      "name": "Brave Default Privacy Filters",
+      "default_enabled": true,
+      "urls": [
+        "https://easylist.to/easylist/easyprivacy.txt",
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt"
+      ]
+    },
+    {
+      "id": "brave-mobile-app-promo",
+      "name": "Mobile app promo blocker (Fanboy Mobile Notifications)",
+      "default_enabled": true,
+      "urls": ["https://secure.fanboy.co.nz/fanboy-mobile-notifications.txt"]
+    },
+    {
+      "id": "brave-japanese-regional",
+      "name": "Japanese website ad blocker (AdGuard Japanese)",
+      "default_enabled": false,
+      "urls": ["https://filters.adtidy.org/extension/ublock/filters/7.txt"]
+    }
+  ]
+}
